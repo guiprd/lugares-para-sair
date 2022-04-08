@@ -63,14 +63,17 @@ def interactionLogic(action=firstActions, interactions=0):
                         df = filterByNonVisitedPlace()
                         action, interactions = actionsList[interactions + 1], interactions + 1
                         continue
-                    if numInput == 2:
+                    elif numInput == 2:
                         df = filterByVisitedPlaces()
                         action, interactions = actionsList[interactions + 1], interactions + 1
                         continue
-                    if numInput == 3:
+                    elif numInput == 3:
                         print("\n")
                         print(randomizePlace())
                         action, interactions = actionsList[2], 2
+                        continue
+                    else:
+                        print("Insira uma opção válida.")
                         continue
                 if interactions == 1:
                     if numInput == 1:
@@ -83,7 +86,7 @@ def interactionLogic(action=firstActions, interactions=0):
                         print(df_filtered_places)
                         action, interactions = actionsList[interactions + 1], interactions + 1
                         continue
-                    if numInput == 2:
+                    elif numInput == 2:
                         print(df["Cidade"].drop_duplicates())
                         print("Digite a cidade que deseja filtrar:")
                         city = input().lower()
@@ -92,9 +95,13 @@ def interactionLogic(action=firstActions, interactions=0):
                         print(randomizePlace(df_filtered_cities))
                         action, interactions = actionsList[interactions + 1], interactions + 1
                         continue
+                    else:
+                        print("Insira uma opção válida.")
+                        continue
                 if interactions == 2:
                     if numInput == 1:
                         action, interactions = actionsList[0], 0
                         continue
-        print("Fechando a aplicação... Obrigado por utilizar o Sorteador de Lugares!")
-        exit()
+        else:
+            print("Fechando a aplicação... Obrigado por utilizar o Sorteador de Lugares!")
+            exit()
