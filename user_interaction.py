@@ -43,10 +43,11 @@ actionsList = [firstActions, secondActions, thirdActions]
 def userImput(action=firstActions, interactions=0):
     try:
         numInput = int(input("Escolha uma das opções abaixo:" + action))
+        return numInput
     except:
         print("Insira uma opção válida.")
         userImput(action)
-    return numInput
+
 
 
 def interactionLogic(action=firstActions, interactions=0):
@@ -89,12 +90,18 @@ def interactionLogic(action=firstActions, interactions=0):
                     elif numInput == 2:
                         print(df["Cidade"].drop_duplicates())
                         print("Digite a cidade que deseja filtrar:")
+                        # Mudar para número ao invés de nome da cidade!!!!!!
+
                         city = input().lower()
-                        df_filtered_cities = filterByCity(df, city)
-                        print("\n")
-                        print(randomizePlace(df_filtered_cities))
-                        action, interactions = actionsList[interactions + 1], interactions + 1
-                        continue
+                        try:
+                            df_filtered_cities = filterByCity(df, city)
+                            print("\n")
+                            print(randomizePlace(df_filtered_cities))
+                            action, interactions = actionsList[interactions + 1], interactions + 1
+                            continue
+                        except:
+                            print("Cidade não existente na lista")
+                            continue
                     else:
                         print("Insira uma opção válida.")
                         continue
